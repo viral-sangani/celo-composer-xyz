@@ -5,6 +5,8 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useConnect } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
@@ -16,12 +18,14 @@ export default function Header() {
 
   const { data: session } = useSession();
 
+  const router = useRouter();
+
   const { connect } = useConnect({
     connector: new InjectedConnector(),
   });
 
   useEffect(() => {
-    if (window.ethereum && window.ethereum.isMiniPay) {
+    if (window.ethereum.isMiniPay) {
       setHideConnectBtn(true);
       connect();
     }
@@ -52,7 +56,7 @@ export default function Header() {
                   </Disclosure.Button>
                 </div>
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                  <div className="flex flex-shrink-0 items-center">
+                  <div className="md:lex flex-shrink-0 items-center hidden">
                     <Image
                       className="block h-8 w-auto sm:block lg:block"
                       src="/logo.svg"
@@ -62,23 +66,53 @@ export default function Header() {
                     />
                   </div>
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    <a
-                      href="#"
-                      className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
+                    <Link
+                      href="/"
+                      className={`inline-flex items-center ${
+                        router.pathname === "/" && "border-b-2 border-black"
+                      } px-1 pt-1 text-sm font-medium text-gray-900`}
                     >
                       Home
-                    </a>
+                    </Link>
+                    <Link
+                      href="/social-connect"
+                      className={`inline-flex items-center ${
+                        router.pathname === "/social-connect" &&
+                        "border-b-2 border-black"
+                      } px-1 pt-1 text-sm font-medium text-gray-900`}
+                    >
+                      SocialConnect
+                    </Link>
+                    <Link
+                      href="/minipay"
+                      className={`inline-flex items-center ${
+                        router.pathname === "/minipay" &&
+                        "border-b-2 border-black"
+                      } px-1 pt-1 text-sm font-medium text-gray-900`}
+                    >
+                      MiniPay
+                    </Link>
+                    <Link
+                      href="/valora"
+                      className={`inline-flex items-center ${
+                        router.pathname === "/valora" &&
+                        "border-b-2 border-black"
+                      } px-1 pt-1 text-sm font-medium text-gray-900`}
+                    >
+                      Valora
+                    </Link>
                   </div>
                 </div>
-                <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <div className="flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   {!hideConnectBtn && (
                     <ConnectButton
-                      showBalance={{ smallScreen: true, largeScreen: false }}
+                      showBalance={{ smallScreen: false, largeScreen: true }}
+                      chainStatus={{ smallScreen: "none", largeScreen: "icon" }}
                     />
                   )}
                 </div>
                 {connected && account && (
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                  <div className="flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                     <button
                       type="button"
                       onClick={() => setIsOpen(true)}
@@ -92,15 +126,49 @@ export default function Header() {
             </div>
 
             <Disclosure.Panel className="sm:hidden">
-              <div className="space-y-1 pt-2 pb-4">
-                <Disclosure.Button
-                  as="a"
-                  href="#"
-                  className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-black"
-                >
-                  Home
-                </Disclosure.Button>
-                {/* Add here your custom menu elements */}
+              <div className="pt-2 pb-4 flex flex-col px-5 space-y-4 text-base">
+                <div>
+                  <Link
+                    href="/"
+                    className={`inline-flex items-center ${
+                      router.pathname === "/" && "border-b-4 border-black"
+                    } px-1 pt-1 font-medium text-gray-900`}
+                  >
+                    Home
+                  </Link>
+                </div>
+                <div>
+                  <Link
+                    href="/social-connect"
+                    className={`inline-flex items-center ${
+                      router.pathname === "/social-connect" &&
+                      "border-b-4 border-black"
+                    } px-1 pt-1 font-medium text-gray-900`}
+                  >
+                    SocialConnect
+                  </Link>
+                </div>
+                <div>
+                  <Link
+                    href="/minipay"
+                    className={`inline-flex items-center ${
+                      router.pathname === "/minipay" &&
+                      "border-b-4 border-black"
+                    } px-1 pt-1 font-medium text-gray-900`}
+                  >
+                    MiniPay
+                  </Link>
+                </div>
+                <div>
+                  <Link
+                    href="/valora"
+                    className={`inline-flex items-center ${
+                      router.pathname === "/valora" && "border-b-4 border-black"
+                    } px-1 pt-1 font-medium text-gray-900`}
+                  >
+                    Valora
+                  </Link>
+                </div>
               </div>
             </Disclosure.Panel>
           </>
