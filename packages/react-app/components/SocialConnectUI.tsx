@@ -33,7 +33,7 @@ const SocialConnectUI: React.FC<Props> = ({ isOpen, closeModal }) => {
 
   useEffect(() => {
     if (session) {
-      getLookupAddress();
+      // getLookupAddress();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session]);

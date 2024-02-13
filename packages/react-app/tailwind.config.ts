@@ -9,25 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        /** primary */
-        prosperity: "#FCFF52",
-        forest: "#476520",
-        /** base */
-        gypsum: "#FCF6F1",
-        sand: "#E7E3D4",
-        wood: "#655947",
-        fig: "#1E002B",
-        /** functional */
-        snow: "#FFFFFF",
-        onyx: "#000000",
-        success: "#329F3B",
-        error: "#E70532",
-        disabled: "#9B9B9B",
-        /** accent */
-        sky: "#7CC0FF",
-        citrus: "#FF9A51",
-        lotus: "#FFA3EB",
-        lavender: "#B490FF",
+        minipayPrimary: "#00955f",
+        minipayPrimaryComp: "#00c77f",
+        minipayDisableCard: "#C8D0CB",
+        minipayPrimaryLight: "#CFF2E5",
+        minipaySecondary: "#EA3C58",
+        valoraPrimary: "#1BB775",
+        valoraDisableCard: "#C8D0CB",
+        valoraPrimaryLight: "#CFF2E5",
+        valoraSecondary: "#DFFC70",
       },
     },
   },

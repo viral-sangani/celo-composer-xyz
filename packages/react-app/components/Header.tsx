@@ -27,7 +27,7 @@ export default function Header() {
   useEffect(() => {
     if (window.ethereum.isMiniPay) {
       setHideConnectBtn(true);
-      connect();
+      // connect();
     }
   }, [connect]);
 
@@ -40,7 +40,7 @@ export default function Header() {
         }}
       />
       <Disclosure as="nav" className="bg-prosperity border-b border-black">
-        {({ open }) => (
+        {({ open, close }) => (
           <>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
               <div className="relative flex h-16 justify-between">
