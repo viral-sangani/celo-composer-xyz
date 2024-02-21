@@ -1,6 +1,6 @@
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useConnectModal } from "@rainbow-me/rainbowkit";
+import { ConnectButton, useConnectModal } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -86,7 +86,7 @@ export default function Header() {
                     </Link>
                   </div>
                 </div>
-                {/* <div className="flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <div className="flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   {!hideConnectBtn && (
                     <ConnectButton
                       showBalance={{ smallScreen: false, largeScreen: true }}
@@ -94,17 +94,6 @@ export default function Header() {
                     />
                   )}
                 </div>
-                {connected && account && (
-                  <div className="flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                    <button
-                      type="button"
-                      onClick={() => setIsOpen(true)}
-                      className="text-white bg-[#050708] hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-xl text-base px-5 py-2.5 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600"
-                    >
-                      Social Connect
-                    </button>
-                  </div>
-                )} */}
               </div>
             </div>
 

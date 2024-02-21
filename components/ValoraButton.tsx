@@ -21,7 +21,7 @@ function ValoraButton({
       disabled={disabled ?? loading}
       className={`${
         widthFull ? "w-full" : "px-4"
-      } ${className} font-bold bg-valoraPrimary rounded-2xl text-white py-3 flex justify-center items-center`}
+      } ${className} font-bold bg-valoraPrimary rounded-2xl text-white py-3 px-2 flex justify-center items-center`}
     >
       {loading ? <>Loading...</> : title}
     </button>
