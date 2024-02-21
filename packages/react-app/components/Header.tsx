@@ -1,44 +1,27 @@
-import { useSocialConnect } from "@/SocialConnect/useSocialConnect";
-import SocialConnectUI from "@/components/SocialConnectUI";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useSession } from "next-auth/react";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useConnect } from "wagmi";
-import { InjectedConnector } from "wagmi/connectors/injected";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [hideConnectBtn, setHideConnectBtn] = useState(false);
-  const { account, connected, lookupAddress } = useSocialConnect();
-
-  const { data: session } = useSession();
 
   const router = useRouter();
 
-  const { connect } = useConnect({
-    connector: new InjectedConnector(),
-  });
+  const { connectModalOpen, openConnectModal } = useConnectModal();
 
   useEffect(() => {
     if (window.ethereum.isMiniPay) {
       setHideConnectBtn(true);
-      // connect();
     }
-  }, [connect]);
+  }, [connectModalOpen]);
 
   return (
     <>
-      <SocialConnectUI
-        isOpen={isOpen}
-        closeModal={() => {
-          setIsOpen(false);
-        }}
-      />
       <Disclosure as="nav" className="bg-prosperity border-b border-black">
         {({ open, close }) => (
           <>
@@ -74,7 +57,7 @@ export default function Header() {
                     >
                       Home
                     </Link>
-                    <Link
+                    {/* <Link
                       href="/social-connect"
                       className={`inline-flex items-center ${
                         router.pathname === "/social-connect" &&
@@ -82,7 +65,7 @@ export default function Header() {
                       } px-1 pt-1 text-sm font-medium text-gray-900`}
                     >
                       SocialConnect
-                    </Link>
+                    </Link> */}
                     <Link
                       href="/minipay"
                       className={`inline-flex items-center ${
@@ -103,7 +86,7 @@ export default function Header() {
                     </Link>
                   </div>
                 </div>
-                <div className="flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                {/* <div className="flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   {!hideConnectBtn && (
                     <ConnectButton
                       showBalance={{ smallScreen: false, largeScreen: true }}
@@ -121,7 +104,7 @@ export default function Header() {
                       Social Connect
                     </button>
                   </div>
-                )}
+                )} */}
               </div>
             </div>
 
@@ -137,7 +120,7 @@ export default function Header() {
                     Home
                   </Link>
                 </div>
-                <div>
+                {/* <div>
                   <Link
                     href="/social-connect"
                     className={`inline-flex items-center ${
@@ -147,7 +130,7 @@ export default function Header() {
                   >
                     SocialConnect
                   </Link>
-                </div>
+                </div> */}
                 <div>
                   <Link
                     href="/minipay"
@@ -178,8 +161,8 @@ export default function Header() {
   );
 }
 
-declare global {
-  interface Window {
-    ethereum: any;
-  }
-}
+// declare global {
+//   interface Window {
+//     ethereum: any;
+//   }
+// }

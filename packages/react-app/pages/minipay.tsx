@@ -38,6 +38,7 @@ function Minipay({}: Props) {
           height={700}
           src="/mobile-frame.png"
           alt="Mobile Frame"
+          priority
         />
         <div className="absolute top-0 left-0 px-5 pt-12 pb-1 w-full h-[640px]">
           <div className="overflow-x-hidden overflow-y-auto h-[600px]">
